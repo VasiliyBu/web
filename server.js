@@ -3,14 +3,21 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const path = require('path');
+const cookieParser = require('cookie-parser');
 
 // Middleware для обработки JSON и URL-кодированных данных
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+// Указываем Express на обслуживание статических файлов из папки public
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+app.set('view engine', 'ejs');
 // Отображение HTML формы для регистрации
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    const currentTheme = req.cookies.theme ?? "light";
+
+    res.render('index', { theme: currentTheme });
 });
 
 // Регулярное выражение для проверки валидности email
