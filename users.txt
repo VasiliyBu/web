@@ -1,3 +1,0 @@
-{"email":"asda@asd.ru","login":"asd112212","password":"asdas","gender":"female","subscribe":false}
-
-{"email":"aasdA@das.ru","login":"dsadasd","password":"asdasda","gender":"male","subscribe":false}
